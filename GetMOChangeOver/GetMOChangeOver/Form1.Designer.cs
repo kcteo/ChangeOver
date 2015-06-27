@@ -29,35 +29,76 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
+            this.cbGetJob = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lbGetMOrders = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(464, 27);
+            this.button1.Location = new System.Drawing.Point(575, 38);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 27);
+            this.button1.Size = new System.Drawing.Size(117, 33);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Connect";
+            this.button1.Text = "Get Setup";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // cbGetJob
+            // 
+            this.cbGetJob.FormattingEnabled = true;
+            this.cbGetJob.Location = new System.Drawing.Point(135, 46);
+            this.cbGetJob.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbGetJob.Name = "cbGetJob";
+            this.cbGetJob.Size = new System.Drawing.Size(403, 24);
+            this.cbGetJob.TabIndex = 1;
+            this.cbGetJob.SelectedIndexChanged += new System.EventHandler(this.cbGetJob_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(53, 53);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 17);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Setup";
+            // 
+            // lbGetMOrders
+            // 
+            this.lbGetMOrders.FormattingEnabled = true;
+            this.lbGetMOrders.ItemHeight = 16;
+            this.lbGetMOrders.Location = new System.Drawing.Point(56, 100);
+            this.lbGetMOrders.Name = "lbGetMOrders";
+            this.lbGetMOrders.Size = new System.Drawing.Size(482, 84);
+            this.lbGetMOrders.TabIndex = 3;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(685, 262);
+            this.ClientSize = new System.Drawing.Size(1370, 444);
+            this.Controls.Add(this.lbGetMOrders);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbGetJob);
             this.Controls.Add(this.button1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cbGetJob;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox lbGetMOrders;
     }
 }
 

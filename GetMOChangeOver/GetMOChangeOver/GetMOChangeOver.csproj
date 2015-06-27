@@ -32,8 +32,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Asm.As.Oib.Common, Version=3.1.1.187, Culture=neutral, PublicKeyToken=200430302da482e6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OIB\Interfaces\Smart Proxies\SiplacePro.SPI\Asm.As.Oib.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Asm.As.Oib.Common.Proxy, Version=3.1.1.187, Culture=neutral, PublicKeyToken=200430302da482e6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OIB\Interfaces\Smart Proxies\SiplacePro.SPI\Asm.As.Oib.Common.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Asm.As.Oib.SIPLACEPro.Contracts">
+      <HintPath>..\..\..\..\OIB\Interfaces\Smart Proxies\SiplacePro.SPI\Asm.As.Oib.SIPLACEPro.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Asm.As.Oib.SIPLACEPro.Proxy">
+      <HintPath>..\..\..\..\OIB\Interfaces\Smart Proxies\SiplacePro.SPI\Asm.As.Oib.SIPLACEPro.Proxy.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="compWhereAbt.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,9 +89,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Setting.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
