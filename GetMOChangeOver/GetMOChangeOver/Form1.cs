@@ -361,6 +361,61 @@ namespace GetMOChangeOver
             foreach (var compDict in compNeeded)
             {
                 //MessageBox.Show(compDict.componentPlc);
+                #region Connecting to LES
+                /* Left Join
+                sql = string.Format("SELECT MaterialDefinition,Name,AreaLocation,Track,PlacementState,Pid " +
+                "FROM SiplaceLESUSR.MaterialSublot " + 
+                "LEFT OUTER JOIN SiplaceLESUSR.FeederTableBinding ON SiplaceLESUSR.MaterialSublot.Extra1 = SiplaceLESUSR.FeederTableBinding.Feeder " +
+                "WHERE SiplaceLESUSR.MaterialSublot.MaterialDefinition = {0} AND SiplaceLESUSR.MaterialSublot.AreaLocation <> 2",compDict.componentPlc);
+                */
+
+                sql = string.Format("SELECT MaterialDefinition,Name,AreaLocation,Track,PlacementState,Pid " +
+                "FROM SiplaceLESUSR.MaterialSublot " +
+                "INNER JOIN SiplaceLESUSR.FeederTableBinding ON SiplaceLESUSR.MaterialSublot.Extra1 = SiplaceLESUSR.FeederTableBinding.Feeder " +
+                "WHERE SiplaceLESUSR.MaterialSublot.MaterialDefinition = {0} AND SiplaceLESUSR.MaterialSublot.AreaLocation = 6", compDict.componentPlc);
+                MessageBox.Show(sql);
+                
+                cnn = new SqlConnection(connectionString);
+                try
+                {
+                    cnn.Open();
+                    command = new SqlCommand(sql, cnn);
+                    dataReader = command.ExecuteReader();
+
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                           // MessageBox.Show(dataReader.GetValue(0) + "-");
+                            compdata = String.Format("{0} {1} Track:{2} Machine:{3}\n", compdata, dataReader.GetValue(0), dataReader.GetValue(3), dataReader.GetValue(5));
+                            
+
+                        }
+                        MessageBox.Show(compdata);
+                    
+
+                    }
+                    else 
+                    {
+                        compdata = String.Format("{0} {1} - LOAD Feeder \\n", compdata, compDict.componentPlc);
+                        MessageBox.Show(compdata);
+                        //MessageBox.Show("No records");
+                    }
+                    
+                    dataReader.Close();
+                    command.Dispose();
+                    cnn.Close();
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("Cannot Open connection" + ex);
+                }
+                #endregion
+
+
+
                 temptxt = "Epsilon";
                 compWhereAbt comp = new compWhereAbt(compDict.componentPlc, 1, temptxt);
                 complocation.Add(comp);          
