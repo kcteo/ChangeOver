@@ -45,10 +45,10 @@ namespace GetMOChangeOver
         {
 
             #region connection string to LES
-            string lesAddr = "PFSG-LES3";
-            string dbName = "SiplaceLES";
-            string userName = "lesreader";
-            string pwd = "read999";
+            //string lesAddr = "PFSG-LES3";
+            //string dbName = "SiplaceLES";
+            //string userName = "lesreader";
+            //string pwd = "read999";
             string setupdata = null;
             #endregion 
 
@@ -181,10 +181,10 @@ namespace GetMOChangeOver
             string sql = null;
             SqlDataReader dataReader;
             
-            string lesAddr = "PFSG-LES3";
-            string dbName = "SiplaceLES";
-            string userName = "lesreader";
-            string pwd = "read999";
+            //string lesAddr = "PFSG-LES3";
+            //string dbName = "SiplaceLES";
+            //string userName = "lesreader";
+            //string pwd = "read999";
 
             connectionString = String.Format("Data Source={0}; Initial Catalog={1};User ID={2};Password={3}", lesAddr, dbName, userName, pwd);
             //MessageBox.Show(connectionString);
@@ -253,7 +253,7 @@ namespace GetMOChangeOver
 
             #region get unique component in placement list
             string panelName;
-            string placementlist;
+            //int placementlistOID;
             string boardPath;
 
             boardPath = String.Format("LES\\{0}", receipedata);
@@ -335,6 +335,21 @@ namespace GetMOChangeOver
 
         private void ProcessPlacementList(PlacementList placeList)
         {
+
+            #region LES Connection variable
+            string connectionString = null;
+            SqlConnection cnn;
+            SqlCommand command;
+            string sql = null;
+            SqlDataReader dataReader;
+            string compdata = null;
+            #endregion
+
+            connectionString = String.Format("Data Source={0}; Initial Catalog={1};User ID={2};Password={3}", lesAddr, dbName, userName, pwd);
+            //MessageBox.Show(connectionString);
+
+            
+
             string temptxt =null;
             //ComponentPlacement currentComPlc = null;
                 var compNeeded = placeList.ComponentPlacements
@@ -372,12 +387,22 @@ namespace GetMOChangeOver
                 PlacementList placeList = pnlMtrx.Panel.PlacementList;
 
                 plcListName = pnlMtrx.Panel.PlacementList.Name;
-                plcListOID = pnlMtrx.Panel.PlacementList.OID;
-
+                plcListOID = pnlMtrx.Panel.PlacementList.OID; 
+                
                 msg = string.Format("Placement List Name : {0}", plcListName);
-                //MessageBox.Show(msg);
+                MessageBox.Show(msg);
+                msg = string.Format("Placement List OID : {0}", plcListOID);
+                MessageBox.Show(msg);
 
-                ProcessPlacementList(placeList);
+                if (placementListOID == plcListOID)
+                {
+                    MessageBox.Show("Child Panel - PlacementList Exist");
+                }
+                else
+                {
+                    placementListOID = plcListOID;
+                    ProcessPlacementList(placeList);
+                }
             }
             else
             {
@@ -413,5 +438,14 @@ namespace GetMOChangeOver
 
 
         }
+
+        int placementListOID = 0;
+
+        #region connection string to LES
+        string lesAddr = "PFSG-LES3";
+        string dbName = "SiplaceLES";
+        string userName = "lesreader";
+        string pwd = "read999";
+        #endregion 
     }
 }
